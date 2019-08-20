@@ -26,6 +26,12 @@ class StructContainer extends StructElement {
   }
 }
 class StructSequence extends StructElement {
+  get comment(){
+    var iscomment =  
+      typeof this.textContent !== 'undefined'
+      && this.textContent[0]==='#';
+    return iscomment;
+  }
 }
 class StructDecision extends StructContainer {
   getName(){
@@ -202,7 +208,16 @@ class StructDiagram extends StructElement {
         } else if(trimmed.startsWith('RETURN:')) {
           stack[0].appendChild(new StructBreak()).textContent = trimmed.substr(7).trim();
         } else {
-          stack[0].appendChild(new StructSequence()).textContent = trimmed;
+          var sequence = new StructSequence();
+          sequence.textContent = trimmed;
+          if(trimmed[0]==='#'){
+            if(stack[0].lastChild instanceof StructSequence
+              && stack[0].lastChild.comment){
+              stack[0].lastChild.innerHTML+='\n'+trimmed;
+              continue;
+            }
+          }
+          stack[0].appendChild(sequence);
         }
       }catch(e){
         throw new StructCodeParseException(i, lines[i], e);

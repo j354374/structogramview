@@ -1,4 +1,6 @@
-initialize application
+#initialize application
+# sdfsdf
+#sfsd#s f ##fs 
 IF: everything OK?
   play some tone
 ELSE:
@@ -16,12 +18,15 @@ FOR: from 1 to 10
   DEFAULT:
     print index
   ENDSELECT:
+  
 ENDFOR:
+
 print current sum
+
 LOOP: 
   IF: current sum is odd
     add 1 to sum
   ENDIF:
   devide sum by 2
-ENDLOOP: sum &lt; 10
-RETURN: calculated result
+ENDLOOP:: sum &lt; 10
+RETURN:calculated result

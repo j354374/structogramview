@@ -24,6 +24,9 @@ struct-sequence,struct-decision,struct-select,struct-loop,struct-iteration,struc
   border-top:1px solid black;
   border-left:1px solid black;
 }
+struct-sequence[comment]{
+  white-space: pre-wrap;
+}
 struct-decision,struct-select{
   display:table;
   width:100%;

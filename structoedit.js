@@ -19,7 +19,12 @@ function generateStructureView(diagram, xmlviewid){
   var indended = '';
   var indent = '';
   for(var l in xmllines){
-    if(xmllines[l].indexOf('</')>=0){
+    if(xmllines[l][0]==='#'){
+      indended+=xmllines[l]+'\n';
+      if(xmllines[l].indexOf('</')>=0){
+        indent = indent.substr(2);
+      }
+    }else if(xmllines[l].indexOf('</')>=0){
       if(xmllines[l].indexOf('<struct-')<0)
         indent = indent.substr(2);
       indended+=indent+xmllines[l]+'\n';
@@ -28,6 +33,7 @@ function generateStructureView(diagram, xmlviewid){
       indent+='  ';
     }
   }
+  
   document.getElementById(xmlviewid).textContent = indended.replace(/<(\/)?struct-/g,'<$1');
 }
 function updateView(structview){
